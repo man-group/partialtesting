@@ -1,0 +1,36 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          name: Create Virtualenv
+          command: |
+            virtualenv venv
+      - run:
+          name: flake8 checks
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            pip install flake8
+            flake8 --ignore=E501,W503 tests/ partialtesting/
+      - run:
+          name: Install PT and deps
+          command: |
+            . venv/bin/activate
+            pip install -e .[tests]
+      - run:
+          name: Test
+          command: |
+            . venv/bin/activate
+            pytest -sv tests/
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
