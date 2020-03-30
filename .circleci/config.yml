@@ -29,6 +29,15 @@ jobs:
           command: |
             . venv/bin/activate
             pytest -sv tests/
+      - run:
+          name: Build Distribution Archives
+          command: |
+            python setup.py bdist_wheel --universal
+            python setup.py bdist_egg
+            python setup.py sdist
+            cp -r ./dist /tmp/circleci-artifacts
+      - store_artifacts:
+          path: /tmp/circleci-artifacts
 
 workflows:
   main:
