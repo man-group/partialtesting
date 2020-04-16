@@ -1,11 +1,11 @@
 # Partial Testing
 
 Continuous Integration practices enable the frequent and verified (built and tested) contribution of code to shared repositories. But, as projects grow, so do their test suites and the time it takes to run them.
-Small and contained changes do not require all tests to be run, most of them would not be relevant. To improve developer productivy and reduce resource usage, we have implemented **Partial Testing**.
+Small and contained changes do not require all tests to be run, most of them simply aren't relevant. To improve developer productivity and reduce resource usage, we have implemented **Partial Testing**.
 By recording coverage data from previous runs, it identifies which tests should be run for each new change or pull-request.
 
 
-To maintain coverage data up-to-date, and to ensure all tests are still occasionally run, master branch builds execute the entire test suite while recording coverage at the same time. The coverage data from the master branch is saved as a `.coverage` file (which is a sqlite DB file from [coveragepy>=5.0](https://github.com/nedbat/coveragepy), details available [here](https://nedbatchelder.com/blog/201810/who_tests_what_is_here.html)) and non-master branches utilize that file to run only the relevant tests for the changes included in the branch.
+To ensure that coverage data remains up-to-date, and that all tests are still occasionally run, master branch builds execute the entire test suite while recording coverage at the same time. The coverage data from the master branch is saved as a `.coverage` file (which is a sqlite DB file from [coveragepy>=5.0](https://github.com/nedbat/coveragepy), details available [here](https://nedbatchelder.com/blog/201810/who_tests_what_is_here.html)) and non-master branches utilize that file to run only the relevant tests for the changes included in the branch.
 
 
 For simplicity, we consider a file as the smallest possible changed unit (instead of doing it at the line level). That is, if a line has changed, it is treated as if the entire file has changed.
@@ -75,7 +75,7 @@ In Summary,
 Installation
 
 ```
-pip install partialtesting  # soon to be published in pypi
+pip install partialtesting
 ```
 
 Once installed, the binaries `partialtest` and `partialtesting` (they are identical, the later is kept for compatibility) become available in your virtual environment:
