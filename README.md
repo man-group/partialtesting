@@ -237,7 +237,7 @@ $ coverage run -p --branch pytest tests/
 $ cp .coverage jenkins/saved_coverage/project_x/907/  # build number 907
 ```
 
-Reminder: add/create a `.coveragerc` file as exlpained above to save test contexts with the coverage data.
+Reminder: add/create a `.coveragerc` file as explained above to save test contexts with the coverage data.
 
 2) Use `partialtesting` on the non-master branch to get a list of the tests that should be run given the changes in the branch.
 
